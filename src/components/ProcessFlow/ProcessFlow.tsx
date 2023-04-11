@@ -34,7 +34,7 @@ const ProcessFlow: React.FC = () => {
       <div className="flex h-full items-center justify-center ">
         <div className=" w-[30%] flex flex-col border-black/40 border-l-2 h-[80%] justify-center pl-12 ">
           <h1 className=" text-black">Info</h1>
-          <p>
+          <p className="text-black">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
             fuga, eum aperiam quidem vero, quisquam sequi sunt nulla, eius
             tenetur ut rerum nemo molestiae perspiciatis necessitatibus nostrum
