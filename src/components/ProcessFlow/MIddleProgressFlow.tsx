@@ -1,45 +1,32 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const MiddleProcessFlow: React.FC = () => {
-  const [zoomLevel, setZoomLevel] = useState(0); 
-  const myElementRef = useRef<HTMLDivElement>(null);
+  const [scrollPercentage, setScrollPercentage] = useState(40);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } =
+        document.documentElement;
+      const percent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+      let per = parseInt(percent.toFixed(0));
+      const height = per > 50 && per < 60 ? per-25 :per-25;
+      setScrollPercentage(height);
+    };
 
-  const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
-    const newZoomLevel = zoomLevel + (event.deltaY > 0 ? -10 : 10); 
-    setZoomLevel(Math.min(Math.max(newZoomLevel, 0), 100)); 
-  };
+    window.addEventListener("scroll", handleScroll);
 
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-    const element = event.currentTarget;
-    const height = element.clientHeight;
-    const offset = element.getBoundingClientRect().top;
-    const position = offset + height;
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    if (offset <= 0 && position >= 0) {
-      const progress = (height + offset) / height;
-      const newZoomLevel = progress * 100; 
-      setZoomLevel(newZoomLevel);
-    } else if (offset > 0) {
-      setZoomLevel(0);
-    } else {
-      setZoomLevel(100);
-    }
-  };
-
+  console.log(scrollPercentage);
   return (
-    <div
-      className="w-screen h-screen px-24 bg-slate-100 border-y-2 "
-      onWheel={handleWheel}
-      onScroll={handleScroll}
-      style={{ overflowY: "scroll" }} 
-    >
-        <span >h</span>
+    <div className="w-screen h-screen px-24 bg-slate-100 border-y-2 flex justify-center items-center flex-col">
       <h1 className="text-black text-3xl text-center">Middle Progress</h1>
       <div className="flex justify-center items-center">
         <img
           src="https://cdn.pixabay.com/animation/2022/08/22/06/27/06-27-28-539_512.gif"
-          style={{ width: `${zoomLevel}%` }} 
+          className=" max-w-none max-h-none"
+          style={{ height: `${scrollPercentage}rem`, maxHeight: "100vh" }}
         />
       </div>
     </div>
