@@ -23,7 +23,7 @@ const ProcessFlow: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
   return (
-    <div className=" w-screen h-screen px-24 bg-slate-100 ">
+    <div className=" w-screen h-screen px-4 md:px-24 bg-slate-100 ">
       <h1 className=" text-black text-3xl">Hello</h1>
       <img
         src="/gif/airplane.gif"
