@@ -25,7 +25,7 @@ const MiddleProcessFlow: React.FC = () => {
 
   console.log(scrollPercentage);
   return (
-    <div className="w-screen h-screen px-4 md:px-24 bg-slate-100 border-y-2 flex justify-center items-center flex-col">
+    <div className="w-screen h-screen px-4 md:px-24 bg-slate-100 border-y-2 max-w-[1200px] mx-auto flex justify-center items-center flex-col">
       <h1 className="text-black text-3xl text-center">Middle Progress</h1>
       <div className="flex justify-center items-center max-w-[100vw]">
         <img
